@@ -2,13 +2,14 @@
  * Title: Primary or index file for Api
 * Description: App's starting file 
 * Author: Mohammad Mesbaul Haque
-* Github link: https://github.com/mohammad-mesbaul-haque/pirple-nodejs
+* Github link: https://github.com/mmesbaul/pirple-nodejs
 * Date: 16/12/2021
 */
  
 // Dependencies
 const http = require('http');
 const url = require('url');
+const {StringDecoder } = require('string_decoder');
 
 // App object or Module scaffolding. 
  
@@ -21,19 +22,24 @@ const url = require('url');
 let server = http.createServer((req, res)=>{
     // Get the url and parse it
     let parsedUrl = url.parse(req.url, true);
-    console.log(parsedUrl);
+    // console.log(parsedUrl);
     // Get the path 
     let path = parsedUrl.pathname;
     let trimmedPath = path.replace(/^\/+|\/+$/g,'')
     let method = req.method;
-    // console.log(method);
-    console.log(req);
-    // console.log(trimmedPath);
-    // send the response
-        res.end('Hello World!')
 
-    // Log the response path
-
+    // Get the payload
+    let decoder = new StringDecoder('utf-8');
+    let buffer = ''; 
+    req.on('data', (data)=>{
+        buffer += decoder.write(data)
+    })
+    req.on('end', ()=>{
+        buffer += decoder.end();
+        // Send the response
+        res.end("Hello World!");
+        console.log(buffer);
+    })
 
 })
 
