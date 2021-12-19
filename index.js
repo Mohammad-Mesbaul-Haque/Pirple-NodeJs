@@ -10,6 +10,7 @@
 const http = require('http');
 const url = require('url');
 const {StringDecoder } = require('string_decoder');
+const config = require('./config'); 
 
 // App object or Module scaffolding. 
  
@@ -62,6 +63,7 @@ let server = http.createServer((req, res)=>{
             let payloadString = JSON.stringify(payload);
 
             // Return the response
+            res.setHeader('Content-Type', 'application/json')
             res.writeHead(statusCode);
             res.end(payloadString);
 
@@ -71,8 +73,8 @@ let server = http.createServer((req, res)=>{
 })
 
 // Start the server, and have it listen on port 3000
-server.listen(3000, ()=>{
-    console.log('Server is listening port 3000');
+server.listen(config.port, ()=>{
+    console.log(`Server is listening port ${config.port} in ${config.envName}`  );
 })
 
 // Define handler
