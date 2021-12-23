@@ -13,6 +13,7 @@ const fs = require('fs');
 const url = require('url');
 const {StringDecoder } = require('string_decoder');
 const config = require('./config'); 
+const handlers = require('./lib/handlers');
 
 // App object or Module scaffolding. 
  
@@ -96,23 +97,11 @@ let unifiedServer = (req, res)=>{
 })
 }
 
-// Define handler
-let handlers = {};
-
-// Sample handler
-handlers.sample = (data, callback)=>{
-    // Callback a http status code, and a payload object
-    callback(403, {'name': 'sample handler'})
-}
-
-handlers.notFoundHandler = (data, callback)=>{
-    callback(404)
-}
-
 
 // Define a request router
 var router = {
-    'sample': handlers.sample
+    'ping': handlers.ping,
+    'users': handlers.users
 }
 
 
