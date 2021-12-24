@@ -14,6 +14,7 @@ const url = require('url');
 const {StringDecoder } = require('string_decoder');
 const config = require('./config'); 
 const handlers = require('./lib/handlers');
+const helpers = require('./lib/helpers');
 
 // App object or Module scaffolding. 
  
@@ -51,7 +52,7 @@ let unifiedServer = (req, res)=>{
     // Get the path 
     let path = parsedUrl.pathname;
     let trimmedPath = path.replace(/^\/+|\/+$/g,'')
-    let method = req.method;
+    let method = req.method.toLowerCase();
     let queryStringObject = parsedUrl.query
     let headers = req.headers;
 
@@ -73,7 +74,7 @@ let unifiedServer = (req, res)=>{
             'queryStringObject' : queryStringObject,
             'method': method,
             'headers' : headers,
-            'payload': buffer
+            'payload': helpers.parseJsonToObject(buffer)
         };
 
         // Route the request to the handler specified in the router
