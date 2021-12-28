@@ -12,6 +12,7 @@ environments.staging = {
     'httpsPort': 3001,
     'envName' : 'staging',
     'hashingSecret' : 'thisIsASecret',
+    'maxChecks' : 5,
 }
 
 //  Production environment
@@ -19,7 +20,8 @@ environments.production = {
     'httpPort' : 5000,
     'httpsPort': 5001,
     'envName' : 'production',
-    'hashingSecret' : 'thisIsAlsoASecret'
+    'hashingSecret' : 'thisIsAlsoASecret',
+    'maxChecks' : 5,
 }
 
 // Determine which one should be exported according to the command line passing
