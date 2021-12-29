@@ -13,6 +13,11 @@ environments.staging = {
     'envName' : 'staging',
     'hashingSecret' : 'thisIsASecret',
     'maxChecks' : 5,
+    'twilio' : {
+        'accountSid' : 'fdkgglksdfjg8e475tjksdfj9i4',
+        'authToken' : 'fkjasej894u5ksdjfiue4wr',
+        'fromPhone' : '3487589'
+    }
 }
 
 //  Production environment
@@ -22,6 +27,11 @@ environments.production = {
     'envName' : 'production',
     'hashingSecret' : 'thisIsAlsoASecret',
     'maxChecks' : 5,
+    'twilio' : {
+        'accountSid' : 'fdkgglksdfjg8e475tjksdfj9i4',
+        'authToken' : 'fkjasej894u5ksdjfiue4wr',
+        'fromPhone' : '3487589'
+    }
 }
 
 // Determine which one should be exported according to the command line passing
