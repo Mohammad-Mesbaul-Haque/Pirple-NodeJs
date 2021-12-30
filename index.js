@@ -8,7 +8,7 @@
  
 // Dependencies
 let server  = require('./lib/server.js');
-// let worker = require('./lib/worker.js');
+let worker = require('./lib/worker.js');
 
 // Declare the app
 let app = {};
@@ -18,7 +18,7 @@ app.init = ()=>{
     // Start the server
     server.init();
     // Start the worker
-    // worker.init();
+    worker.init();
 }
 
 // Execute the function
