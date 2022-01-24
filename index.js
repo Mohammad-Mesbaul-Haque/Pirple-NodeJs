@@ -9,6 +9,7 @@
 // Dependencies
 let server  = require('./lib/server.js');
 let worker = require('./lib/worker.js');
+let cli = require('./lib/cli.js');
 
 // Declare the app
 let app = {};
@@ -19,6 +20,11 @@ app.init = ()=>{
     server.init();
     // Start the worker
     worker.init();
+
+    // Start the CLI , It should starts last otherwise it will block the whole console
+    setTimeout(() => {
+        cli.init();
+    }, 200);
 }
 
 // Execute the function
